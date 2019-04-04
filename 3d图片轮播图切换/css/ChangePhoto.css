@@ -1,0 +1,45 @@
+.list li {
+
+    list-style: none;
+
+    position: absolute;
+
+    transition: 0.5s ease;
+}
+
+.p1 {
+    transform: translate3d(-224px,0,0) scale(0.81);
+    opacity:0;
+}
+
+.p2 {
+    transform: translate3d(0px,0,0) scale(0.81);
+    z-index: 1;
+}
+
+.p3 {
+    transform: translate3d(224px,0,0) scale(1);
+    z-index: 3;
+}
+
+.p4 {
+    transform: translate3d(449px,0,0) scale(0.81);
+    z-index: 1;
+}
+
+.p5 {
+    transform: translate3d(672px,0,0) scale(0.81);
+}
+
+.p6 {
+    transform: translate3d(896px,0,0) scale(0.81);
+}
+
+.p7 {
+    transform: translate3d(1120px,0,0) scale(0.81);
+    opacity: 0;
+}
+
+.buttons .blue {
+    background-color: blue;
+}

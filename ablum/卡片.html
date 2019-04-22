@@ -1,25 +1,184 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8" />
     <title>Title</title>
 </head>
-    <style>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
 
-    </style>
+    .wrap {
+        width: 1000px;
+        height: 630px;
+
+        margin: 0 auto;
+
+        position: relative;
+    }
+
+    ul {
+        list-style: none;
+    }
+
+    ul li {
+        box-shadow: 2px 2px 5px #333333;
+        border-radius: 5px;
+
+        font-size: 0;
+        /*去除a里面默认文字高度的影响*/
+        margin: 10px 20px;
+
+        float: left;
+    }
+
+    a {
+        cursor: pointer;
+    }
+
+    .black {
+        width: 100%;
+        height: 100%;
+        background-color: rgba(000, 000, 000, 0.7);
+
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+
+    .big {
+        width: 650px;
+        height: 406px;
+        border: 10px solid #ffffff;
+
+        margin-left: -335px;
+        margin-top: -213px;
+
+        position: absolute;
+        top: 50%;
+        left: 50%;
+    }
+
+    #right {
+        position: absolute;
+        top: 40%;
+        right: 5px;
+
+        cursor: pointer;
+    }
+
+    #left {
+        position: absolute;
+        top: 40%;
+        left: 5px;
+
+        cursor: pointer;
+    }
+</style>
+
 <body>
     <div class="wrap">
-        <div class="images"></div>
-        <div class="balck">
-            <div class="big">
-                
-            </div>
+        <div class="images">
+            <ul>
+                <li>
+                    <a href="images/big1.jpg"><img src="images/s1.jpg" alt="" /></a>
+                </li>
+                <li>
+                    <a href="images/big2.jpg"><img src="images/s2.jpg" alt="" /></a>
+                </li>
+                <li>
+                    <a href="images/big3.jpg"><img src="images/s3.jpg" alt="" /></a>
+                </li>
+                <li>
+                    <a href="images/big4.jpg"><img src="images/s4.jpg" alt="" /></a>
+                </li>
+                <li>
+                    <a href="images/big5.jpg"><img src="images/s5.jpg" alt="" /></a>
+                </li>
+                <li>
+                    <a href="images/big6.jpg"><img src="images/s6.jpg" alt="" /></a>
+                </li>
+                <li>
+                    <a href="images/big7.jpg"><img src="images/s7.jpg" alt="" /></a>
+                </li>
+                <li>
+                    <a href="images/big8.jpg"><img src="images/s8.jpg" alt="" /></a>
+                </li>
+                <li>
+                    <a href="images/big9.jpg"><img src="images/s9.jpg" alt="" /></a>
+                </li>
+            </ul>
         </div>
-
-
+        <div class="black" style="display: none;"></div>
+        <div class="big" style="display: none;">
+            <img src="./images/dirl.png" alt="" id="left" />
+            <img src="images/dirr.png" alt="" id="right" />
+            <img src="" alt="" id="img" width="100%" height="100%" />
+        </div>
     </div>
     <script>
+        var black = document.getElementsByClassName('black')[0];
+        var big = document.getElementsByClassName('big')[0];
+        var link = document.getElementsByTagName('a');
+        var bigImg = document.getElementById('img');
+        var leftbt = document.getElementById('left');
+        var rightbt = document.getElementById('right');
+        var index = 0;
 
+        var numKey = Object.keys(link);
+        for (var key in numKey) {
+            var f = function() {
+                var i = key;
+
+                link[i].onclick = function(event) {
+                    index = i;
+                    // 显示隐藏的大图片
+                    ShowBig();
+                    bigImg.src = this.href;
+                    event.preventDefault();
+                    // 或者
+                    // return false; //去掉a的默认事件
+                };
+
+
+            };
+            f(); //调用闭包
+        }
+
+        leftbt.onclick = function() {
+            index -= 1;
+            index = index < 0 ? link.length - 1 : index;
+            Move(index);
+        };
+
+        rightbt.onclick = function() {
+            index += 1;
+            index = index >= link.length ? 0 : index;
+            Move(index);
+        };
+
+        black.onclick = function() {
+            // 取消大图片的显示
+            HiddenBig();
+        }
+
+        function Move(data) {
+            bigImg.src = link[index].href;
+        }
+
+        function ShowBig() {
+            black.style.display = 'block';
+            big.style.display = 'block';
+        }
+
+        function HiddenBig() {
+            black.style.display = 'none';
+            big.style.display = 'none';
+        }
     </script>
 </body>
+
 </html>
